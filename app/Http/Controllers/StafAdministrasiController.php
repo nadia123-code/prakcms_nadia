@@ -10,45 +10,44 @@ class StafAdministrasiController extends Controller
     public function index()
     {
         $data = StafAdministrasi::all();
-        return view('staf-administrasi.index', compact('data'));
+        return view('staf_administrasi.index', compact('data'));
     }
 
     public function show($id)
     {
-        $staf = StafAdministrasi::find($id);
-        return view('staf-administrasi.show', compact('staf'));
+        $item = StafAdministrasi::find($id);
+        return view('staf_administrasi.show', compact('item'));
     }
 
     public function create()
     {
-        return view('staf-administrasi.create');
+        return view('staf_administrasi.create');
     }
 
     public function store(Request $request)
     {
-        return redirect('/staf-administrasi')->with('success', 'Data dummy berhasil ditambahkan.');
+        return redirect()->route('staf_administrasi.index');
     }
 
     public function edit($id)
     {
-        $staf = StafAdministrasi::find($id);
-        return view('staf-administrasi.edit', compact('staf'));
+        $item = StafAdministrasi::find($id);
+        return view('staf_administrasi.edit', compact('item'));
     }
 
     public function update(Request $request, $id)
     {
-        return redirect('/staf-administrasi')->with('success', 'Data dummy berhasil diperbarui.');
+        return redirect()->route('staf_administrasi.index');
+    }
+
+    public function delete($id)
+    {
+        $item = StafAdministrasi::find($id);
+        return view('staf_administrasi.delete', compact('item'));
     }
 
     public function destroy($id)
     {
-        return redirect('/staf-administrasi')->with('success', 'Data dummy berhasil dihapus.');
+        return redirect()->route('staf_administrasi.index');
     }
-
-    public function delete($id)
-{
-    $staf = StafAdministrasi::find($id);
-    return view('staf-administrasi.delete', compact('staf'));
-}
-
 }

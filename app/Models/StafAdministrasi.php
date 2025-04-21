@@ -8,29 +8,29 @@ class StafAdministrasi
     {
         return [
             [
-                'id_staf' => 1,
-                'id_akun' => 101,
-                'nama' => 'Nadia',
-                'jabatan' => 'Admin Keuangan',
-                'nomor_telepon' => '081234567890',
-                'email' => 'nadia@example.com',
+                'ID_Staf' => 1,
+                'ID_Akun' => 101,
+                'Nama' => 'Siti Aminah',
+                'Jabatan' => 'Front Office',
+                'Nomor_Telepon' => '081234567890',
+                'Email' => 'siti@example.com',
             ],
             [
-                'id_staf' => 2,
-                'id_akun' => 102,
-                'nama' => 'Salwaa',
-                'jabatan' => 'Admin Umum',
-                'nomor_telepon' => '082345678901',
-                'email' => 'salwa@example.com',
+                'ID_Staf' => 2,
+                'ID_Akun' => 102,
+                'Nama' => 'Budi Hartono',
+                'Jabatan' => 'Administrasi Keuangan',
+                'Nomor_Telepon' => '082233445566',
+                'Email' => 'budi@example.com',
             ]
         ];
     }
 
     public static function find($id)
     {
-        foreach (self::all() as $staf) {
-            if ($staf['id_staf'] == $id) {
-                return $staf;
+        foreach (self::all() as $item) {
+            if ($item['ID_Staf'] == $id) {
+                return $item;
             }
         }
         return null;
