@@ -14,4 +14,5 @@ Route::resource('catatan_medis', CatatanMedisController::class);
 Route::resource('dokter', DokterController::class);
 Route::resource('pasien', PasienController::class);
 Route::get('/', function () {
+    return view('home');
 });

@@ -1,22 +1,18 @@
-<!-- ======= Header ======= -->
-<header id="header" class="header fixed-top d-flex align-items-center">
-  <div class="container d-flex align-items-center justify-content-between">
+<nav class="navbar navbar-expand-lg navbar-light mb-4">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="{{ url('/') }}">Sistem Klinik Kesehatan</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <a href="{{ url('/') }}" class="logo d-flex align-items-center">
-      <img src="{{ asset('assets/img/logo.png') }}" alt="">
-      <span>Medicio</span>
-    </a>
-
-    <nav id="navbar" class="navbar">
-      <ul>
-        <li><a class="nav-link scrollto active" href="{{ route('staf_administrasi.index') }}">Staf Administrasi</a></li>
-        <li><a class="nav-link scrollto" href="{{ route('akun_pengguna.index') }}">Akun Pengguna</a></li>
-        <li><a class="nav-link scrollto" href="{{ route('catatan_medis.index') }}">Catatan Medis</a></li>
-        <li><a class="nav-link scrollto" href="{{ route('dokter.index') }}">Dokter</a></li>
-        <li><a class="nav-link scrollto" href="{{ route('pasien.index') }}">Pasien</a></li>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="{{ route('staf_administrasi.index') }}">Staf Administrasi</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ route('akun_pengguna.index') }}">Akun Pengguna</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ route('catatan_medis.index') }}">Catatan Medis</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ route('dokter.index') }}">Dokter</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ route('pasien.index') }}">Pasien</a></li>
       </ul>
-      <i class="bi bi-list mobile-nav-toggle"></i>
-    </nav><!-- .navbar -->
-
+    </div>
   </div>
-</header><!-- End Header -->
+</nav>
