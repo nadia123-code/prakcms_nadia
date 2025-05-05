@@ -2,30 +2,30 @@
 
 namespace App\Models;
 
-class Dokter
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Dokter extends Model
 {
-    public static function all()
+    use HasFactory;
+
+    protected $table = 'dokters'; 
+    protected $fillable = ['nama','spesialisasi','nomor_telepon', 'email'];
+
+    protected $primaryKey = 'id'; 
+
+    public $incrementing = false; 
+    protected $keyType = 'string';
+
+    public $timestamps = false;
+
+    public static function getAll()
     {
-        return [
-            [
-                'ID_Dokter' => 1,
-                'Nama' => 'Dr. Andi',
-                'Spesialisasi' => 'Umum',
-                'Nomor_Telepon' => '08123456789',
-                'Email' => 'andi@example.com'
-            ],
-            [
-                'ID_Dokter' => 2,
-                'Nama' => 'Dr. Budi',
-                'Spesialisasi' => 'Anak',
-                'Nomor_Telepon' => '08987654321',
-                'Email' => 'budi@example.com'
-            ]
-        ];
+        return Dokter::all();
     }
 
     public static function find($id)
     {
-        return collect(self::all())->firstWhere('ID_Dokter', $id);
+        return Dokter::where('id', $id)->first();
     }
 }

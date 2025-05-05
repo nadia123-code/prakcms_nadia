@@ -2,37 +2,47 @@
 
 namespace App\Models;
 
-class StafAdministrasi
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class AkunPengguna extends Model
 {
-    public static function all()
+    use HasFactory;
+
+    protected $table = 'akun_penggunas';
+    protected $primaryKey = 'id';
+    protected $keyType = 'string';
+    public $incrementing = false;
+    public $timestamps = false;
+
+    protected $fillable = [
+        'username',
+        'password',
+        'peran'
+    ];
+
+    /**
+     * Relasi satu ke satu atau satu ke banyak dengan StafAdministrasi
+     */
+    public function stafAdministrasi()
     {
-        return [
-            [
-                'ID_Staf' => 1,
-                'ID_Akun' => 101,
-                'Nama' => 'Siti Aminah',
-                'Jabatan' => 'Front Office',
-                'Nomor_Telepon' => '081234567890',
-                'Email' => 'siti@example.com',
-            ],
-            [
-                'ID_Staf' => 2,
-                'ID_Akun' => 102,
-                'Nama' => 'Budi Hartono',
-                'Jabatan' => 'Administrasi Keuangan',
-                'Nomor_Telepon' => '082233445566',
-                'Email' => 'budi@example.com',
-            ]
-        ];
+        return $this->hasOne(StafAdministrasi::class, 'ID_Akun', 'id');
+        // Jika satu akun bisa dipakai banyak staf: gunakan hasMany()
     }
 
+    /**
+     * Fungsi statis untuk ambil semua data
+     */
+    public static function getAll()
+    {
+        return self::all();
+    }
+
+    /**
+     * Fungsi statis untuk cari data berdasarkan ID
+     */
     public static function find($id)
     {
-        foreach (self::all() as $item) {
-            if ($item['ID_Staf'] == $id) {
-                return $item;
-            }
-        }
-        return null;
+        return self::where('id', $id)->first();
     }
 }

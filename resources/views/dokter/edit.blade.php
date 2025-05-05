@@ -1,22 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Edit Dokter</h1>
-<form method="POST" action="{{ route('dokter.update', $dokter['ID_Dokter']) }}">
-    @csrf
-    @method('PUT')
-    <label>Nama:</label>
-    <input type="text" name="Nama" value="{{ $dokter['Nama'] }}"><br>
+    <h2>Edit Dokter</h2>
+    <form method="POST" action="{{ route('dokter.update', $dokter->id) }}">
+        @csrf
+        @method('PUT')
 
-    <label>Spesialisasi:</label>
-    <input type="text" name="Spesialisasi" value="{{ $dokter['Spesialisasi'] }}"><br>
+        <label>Nama:</label><br>
+        <input type="text" name="nama" value="{{ $dokter->nama }}"><br><br>
 
-    <label>Nomor Telepon:</label>
-    <input type="text" name="Nomor_Telepon" value="{{ $dokter['Nomor_Telepon'] }}"><br>
+        <label>Spesialisasi:</label><br>
+        <input type="text" name="spesialisasi" value="{{ $dokter->spesialisasi }}"><br><br>
 
-    <label>Email:</label>
-    <input type="email" name="Email" value="{{ $dokter['Email'] }}"><br>
+        <label>Nomor Telepon:</label><br>
+        <input type="text" name="nomor_telepon" value="{{ $dokter->nomor_telepon }}"><br><br>
 
-    <button type="submit">Perbarui</button>
-</form>
+        <label>Email:</label><br>
+        <input type="email" name="email" value="{{ $dokter->email }}"><br><br>
+
+        <button type="submit">Update</button>
+    </form>
 @endsection

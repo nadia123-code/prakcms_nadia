@@ -1,10 +1,21 @@
 @extends('layouts.app')
 
+@section('title', 'Detail Dokter')
+
 @section('content')
-<h1>Detail Dokter</h1>
-<p><strong>Nama:</strong> {{ $dokter['Nama'] }}</p>
-<p><strong>Spesialisasi:</strong> {{ $dokter['Spesialisasi'] }}</p>
-<p><strong>Nomor Telepon:</strong> {{ $dokter['Nomor_Telepon'] }}</p>
-<p><strong>Email:</strong> {{ $dokter['Email'] }}</p>
-<a href="{{ route('dokter.index') }}">Kembali ke Daftar</a>
+    <h2>Detail Dokter</h2>
+
+    <p><strong>Nama:</strong> {{ $dokter->nama }}</p>
+    <p><strong>Spesialisasi:</strong> {{ $dokter->spesialisasi }}</p>
+    <p><strong>Nomor Telepon:</strong> {{ $dokter->nomor_telepon }}</p>
+    <p><strong>Email:</strong> {{ $dokter->email }}</p>
+
+    <br>
+
+    <a href="{{ route('dokter.edit', $dokter->id) }}">✏ Edit</a> |
+    <a href="{{ route('dokter.delete', $dokter->id) }}">🗑 Hapus</a>
+
+    <a href="{{ route('dokter.index') }}">Kembali</a>
+
+
 @endsection
