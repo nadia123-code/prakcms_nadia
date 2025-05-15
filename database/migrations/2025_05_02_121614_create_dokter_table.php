@@ -12,8 +12,9 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('spesialisasi');
-            $table->string('nomor_telepon');
-            $table->string('email');
+            $table->string('no_telepon');
+            $table->string('email', 255)->unique();
+            $table->timestamps();
         });
     }
 

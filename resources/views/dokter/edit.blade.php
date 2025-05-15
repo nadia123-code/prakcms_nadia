@@ -12,8 +12,8 @@
         <label>Spesialisasi:</label><br>
         <input type="text" name="spesialisasi" value="{{ $dokter->spesialisasi }}"><br><br>
 
-        <label>Nomor Telepon:</label><br>
-        <input type="text" name="nomor_telepon" value="{{ $dokter->nomor_telepon }}"><br><br>
+        <label>No Telepon:</label><br>
+        <input type="text" name="no_telepon" value="{{ $dokter->no_telepon }}"><br><br>
 
         <label>Email:</label><br>
         <input type="email" name="email" value="{{ $dokter->email }}"><br><br>

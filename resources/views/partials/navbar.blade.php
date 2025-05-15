@@ -7,9 +7,9 @@
 
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="{{ route('staf_administrasi.index') }}">Staf Administrasi</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ route('akun_pengguna.index') }}">Akun Pengguna</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ route('catatan_medis.index') }}">Catatan Medis</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ route('stafadministrasi.index') }}">Staf Administrasi</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ route('akunpengguna.index') }}">Akun Pengguna</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ route('catatanmedis.index') }}">Catatan Medis</a></li>
         <li class="nav-item"><a class="nav-link" href="{{ route('dokter.index') }}">Dokter</a></li>
         <li class="nav-item"><a class="nav-link" href="{{ route('pasien.index') }}">Pasien</a></li>
       </ul>

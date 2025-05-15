@@ -2,39 +2,33 @@
 
 namespace App\Models;
 
-class Pasien
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Pasien extends Model
 {
-    public static function all()
+    use HasFactory;
+
+    protected $table = 'pasiens';
+    protected $fillable = [
+        'id_akunpengguna',
+        'nama', 
+        'tanggal_lahir',
+        'jenis_kelamin', 
+        'alamat',
+        'no_telepon',
+        'email',
+        'riwayat_medis'
+    ];
+
+    public function akunpengguna()
     {
-        return [
-            [
-                'ID_Pasien' => 1,
-                'ID_Akun' => 101,
-                'Nama' => 'Rina Maharani',
-                'Tanggal_Lahir' => '1990-05-12',
-                'Jenis_Kelamin' => 'Perempuan',
-                'Alamat' => 'Jl. Merdeka No. 1',
-                'Nomor_Telepon' => '081234567890',
-                'Email' => 'rina@example.com',
-                'Riwayat_Medis' => 'Asma sejak kecil.'
-            ],
-            [
-                'ID_Pasien' => 2,
-                'ID_Akun' => 102,
-                'Nama' => 'Andi Saputra',
-                'Tanggal_Lahir' => '1985-10-30',
-                'Jenis_Kelamin' => 'Laki-laki',
-                'Alamat' => 'Jl. Pahlawan No. 45',
-                'Nomor_Telepon' => '081298765432',
-                'Email' => 'andi@example.com',
-                'Riwayat_Medis' => 'Riwayat tekanan darah tinggi.'
-            ]
-        ];
+        return $this->belongsTo(AkunPengguna::class, 'id_akunpengguna');
     }
 
-    public static function find($id)
+    public function catatanmedis()
     {
-        $data = self::all();
-        return collect($data)->firstWhere('ID_Pasien', $id);
-    }
+        return $this->hasMany(CatatanMedis::class, 'id_pasien');
+    }   
+
 }

@@ -1,20 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-<h2>Hapus Staf Administrasi</h2>
-<p>Apakah kamu yakin ingin menghapus data berikut?</p>
+    <h2>Hapus Staf Administrasi</h2>
+    <p>Apakah kamu yakin ingin menghapus staf ini?</p>
 
-<ul>
-    <li><strong>Nama:</strong> {{ $item['Nama'] }}</li>
-    <li><strong>Jabatan:</strong> {{ $item['Jabatan'] }}</li>
-    <li><strong>No Telepon:</strong> {{ $item['Nomor_Telepon'] }}</li>
-    <li><strong>Email:</strong> {{ $item['Email'] }}</li>
-</ul>
+    <ul>
+        <li><strong>Nama:</strong> {{ $stafadministrasi->nama }}</li>
+        <li><strong>Jabatan:</strong> {{ $stafadministrasi->jabatan }}</li>
+        <li><strong>Nomor Telepon:</strong> {{ $stafadministrasi->no_telepon }}</li>
+        <li><strong>Email:</strong> {{ $stafadministrasi->email }}</li>
+    </ul>
 
-<form method="POST" action="{{ route('staf_administrasi.destroy', $item['ID_Staf']) }}">
-    @csrf
-    @method('DELETE')
-    <button type="submit">Ya, Hapus</button>
-    <a href="{{ route('staf_administrasi.index') }}">Batal</a>
-</form>
+    <form method="POST" action="{{ route('stafadministrasi.destroy', $stafadministrasi->id) }}">
+        @csrf
+        @method('DELETE')
+        <button type="submit">Ya, Hapus</button>
+        <a href="{{ route('stafadministrasi.index') }}">Batal</a>
+    </form>
 @endsection

@@ -9,23 +9,20 @@ class AkunPengguna extends Model
 {
     use HasFactory;
 
-    protected $table = 'akun_penggunas';
-    protected $fillable = ['username','password','peran'];
+    protected $table = 'akunpenggunas';
+    protected $fillable = [ 
+        'username',
+        'password', 
+        'peran'
+    ];
 
-    protected $primaryKey = 'id';
-
-    public $incrementing = false;
-    protected $keyType = 'string';
-
-    public $timestamps = false;
-
-    public static function getAll()
+    public function pasien()
     {
-        return AkunPengguna::all();
+        return $this->hasOne(Pasien::class, 'id_akunpengguna');
     }
 
-    public static function find($id)
+    public function stafadministrasi()
     {
-        return AkunPengguna::where('id', $id)->first();
+        return $this->hasOne(StafAdministrasi::class, 'id_akunpengguna');
     }
 }

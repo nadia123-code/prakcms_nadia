@@ -7,25 +7,22 @@ use App\Models\AkunPengguna;
 
 class AkunPenggunaController extends Controller
 {
-    // Menampilkan daftar semua akun pengguna
     public function index()
     {
         return view('akun_pengguna.index', [
-            'akun_penggunas' => AkunPengguna::all()
+            'akunpenggunas' => AkunPengguna::all()
         ]);
     }
 
-    // Menampilkan form tambah akun pengguna
     public function create()
     {
         return view('akun_pengguna.create');
     }
 
-    // Menyimpan data akun pengguna baru
     public function store(Request $request)
     {
         $request->validate([
-            'username' => 'required|string|max:50',
+            'username' => 'required|string|max:50|unique:akunpenggunas,username,',
             'password' => 'required|string|max:50',
             'peran' => 'required|string|max:225',
         ]);
@@ -36,33 +33,30 @@ class AkunPenggunaController extends Controller
             'peran' => $request->input('peran'),
         ]);
 
-        return redirect()->route('akun_pengguna.index');
+        return redirect()->route('akunpengguna.index');
     }
 
-    // Menampilkan detail akun pengguna
     public function show($id)
     {
-        $akun_pengguna = AkunPengguna::findOrFail($id);
-        return view('akun_pengguna.show', compact('akun_pengguna'));
+        $akunpengguna = AkunPengguna::findOrFail($id);
+        return view('akun_pengguna.show', compact('akunpengguna'));
     }
 
-    // Menampilkan form edit akun pengguna
     public function edit($id)
     {
-        $akun_pengguna = AkunPengguna::findOrFail($id);
-        return view('akun_pengguna.edit', compact('akun_pengguna'));
+        $akunpengguna = AkunPengguna::findOrFail($id);
+        return view('akun_pengguna.edit', compact('akunpengguna'));
     }
 
-    // Memproses update data akun pengguna
     public function update(Request $request, $id)
     {
         $request->validate([
-            'username' => 'required|string|max:50',
+            'username' => 'required|string|max:50|unique:akunpenggunas,username,',
             'password' => 'required|string|max:50',
             'peran' => 'required|string|max:225',
         ]);
 
-        $akun_pengguna = AkunPengguna::findOrFail($id);
+        $akunpengguna = AkunPengguna::findOrFail($id);
 
         $data = [
             'username' => $request->input('username'),
@@ -70,24 +64,22 @@ class AkunPenggunaController extends Controller
             'peran' => $request->input('peran'),
         ];
 
-        $akun_pengguna->update($data);
+        $akunpengguna->update($data);
 
-        return redirect()->route('akun_pengguna.show', $id);
+        return redirect()->route('akunpengguna.show', $id);
     }
 
-    // Menampilkan halaman konfirmasi hapus
     public function delete($id)
     {
-        $akun_pengguna = AkunPengguna::findOrFail($id);
-        return view('akun_pengguna.delete', compact('akun_pengguna'));
+        $akunpengguna = AkunPengguna::findOrFail($id);
+        return view('akun_pengguna.delete', compact('akunpengguna'));
     }
 
-    // Menghapus data akun pengguna
     public function destroy($id)
     {
-        $akun_pengguna = AkunPengguna::findOrFail($id);
-        $akun_pengguna->delete();
+        $akunpengguna = AkunPengguna::findOrFail($id);
+        $akunpengguna->delete();
 
-        return redirect()->route('akun_pengguna.index');
+        return redirect()->route('akunpengguna.index');
     }
 }

@@ -9,23 +9,16 @@ class Dokter extends Model
 {
     use HasFactory;
 
-    protected $table = 'dokters'; 
-    protected $fillable = ['nama','spesialisasi','nomor_telepon', 'email'];
+    protected $table = 'dokters';
+    protected $fillable = [
+        'nama', 
+        'spesialisasi',
+        'no_telepon', 
+        'email'
+    ];
 
-    protected $primaryKey = 'id'; 
-
-    public $incrementing = false; 
-    protected $keyType = 'string';
-
-    public $timestamps = false;
-
-    public static function getAll()
+    public function catatanmedis()
     {
-        return Dokter::all();
-    }
-
-    public static function find($id)
-    {
-        return Dokter::where('id', $id)->first();
+        return $this->hasMany(CatatanMedis::class, 'id_dokter');
     }
 }

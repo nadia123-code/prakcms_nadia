@@ -7,7 +7,7 @@
     <ul>
         <li><strong>Nama:</strong> {{ $dokter->nama }}</li>
         <li><strong>Spesialisasi:</strong> {{ $dokter->spesialisasi }}</li>
-        <li><strong>Nomor Telepon:</strong> {{ $dokter->nomor_telepon }}</li>
+        <li><strong>No Telepon:</strong> {{ $dokter->no_telepon }}</li>
         <li><strong>Email:</strong> {{ $dokter->email }}</li>
     </ul>
 

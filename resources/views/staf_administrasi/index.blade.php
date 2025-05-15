@@ -1,20 +1,20 @@
 @extends('layouts.app')
 
+@section('title', 'Daftar Staf Administrasi')
+
 @section('content')
-<h2>Data Staf Administrasi</h2>
-<a href="{{ route('staf_administrasi.create') }}">Tambah Staf</a>
-<ul>
-@foreach($data as $staf)
-    <li>
-        {{ $staf['Nama'] }} ({{ $staf['Jabatan'] }})
-        <a href="{{ route('staf_administrasi.show', $staf['ID_Staf']) }}">Lihat</a> |
-        <a href="{{ route('staf_administrasi.edit', $staf['ID_Staf']) }}">Edit</a> |
-        <form action="{{ route('staf_administrasi.destroy', $staf['ID_Staf']) }}" method="POST" style="display:inline;">
-            @csrf
-            @method('DELETE')
-            <button type="submit">Hapus</button>
-        </form>
-    </li>
-@endforeach
-</ul>
+    <h1>Daftar Staf Administrasi</h1>
+
+    <ul>
+        @forelse($stafadministrasis as $s)
+            <li>
+                <a href="/stafadministrasi/{{ $s['id'] }}">{{ $s['nama'] }}</a>
+            </li>
+        @empty
+            <p>Tidak ada staf administrasi.</p>
+        @endforelse
+    </ul>
+
+    <a href="{{ route('stafadministrasi.create') }}" style="display: inline-block; margin-top: 20px;">+ Tambah Staf</a>
+    <br><br>
 @endsection

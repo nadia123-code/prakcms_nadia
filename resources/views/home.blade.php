@@ -13,7 +13,7 @@
                 <i class="bi bi-person-lines-fill display-4 text-primary mb-3"></i>
                 <h5 class="card-title">Staf Administrasi</h5>
                 <p class="card-text">Kelola data staf administrasi klinik.</p>
-                <a href="{{ route('staf_administrasi.index') }}" class="btn btn-outline-primary w-100">Lihat Data</a>
+                <a href="{{ route('stafadministrasi.index') }}" class="btn btn-outline-primary w-100">Lihat Data</a>
             </div>
         </div>
     </div>
@@ -23,7 +23,7 @@
                 <i class="bi bi-person-circle display-4 text-success mb-3"></i>
                 <h5 class="card-title">Akun Pengguna</h5>
                 <p class="card-text">Manajemen akun login dan hak akses pengguna.</p>
-                <a href="{{ route('akun_pengguna.index') }}" class="btn btn-outline-success w-100">Lihat Data</a>
+                <a href="{{ route('akunpengguna.index') }}" class="btn btn-outline-success w-100">Lihat Data</a>
             </div>
         </div>
     </div>
@@ -33,7 +33,7 @@
                 <i class="bi bi-journal-medical display-4 text-danger mb-3"></i>
                 <h5 class="card-title">Catatan Medis</h5>
                 <p class="card-text">Histori pemeriksaan dan diagnosis pasien.</p>
-                <a href="{{ route('catatan_medis.index') }}" class="btn btn-outline-danger w-100">Lihat Data</a>
+                <a href="{{ route('catatanmedis.index') }}" class="btn btn-outline-danger w-100">Lihat Data</a>
             </div>
         </div>
     </div>

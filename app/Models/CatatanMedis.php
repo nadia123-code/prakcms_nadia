@@ -2,36 +2,31 @@
 
 namespace App\Models;
 
-class CatatanMedis
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class CatatanMedis extends Model
 {
-    public static function all()
+    use HasFactory;
+
+    protected $table = 'catatanmedis';
+    protected $fillable = [
+        'id_pasien',
+        'id_dokter',
+        'tanggal', 
+        'diagnosis',
+        'hasil_pemeriksaan',
+        'resep_obat',
+        'tindak_lanjut'
+    ];
+
+    public function pasien()
     {
-        return [
-            [
-                'ID_Catatan' => 1,
-                'ID_Pasien' => 101,
-                'ID_Dokter' => 201,
-                'Tanggal' => '2025-04-20',
-                'Diagnosis' => 'Demam Berdarah',
-                'Hasil_Pemeriksaan' => 'Trombosit rendah, suhu tinggi',
-                'Resep_Obat' => 'Paracetamol, cairan infus',
-                'Tindak_Lanjut' => 'Rawat inap 3 hari',
-            ],
-            [
-                'ID_Catatan' => 2,
-                'ID_Pasien' => 102,
-                'ID_Dokter' => 202,
-                'Tanggal' => '2025-04-19',
-                'Diagnosis' => 'Infeksi Saluran Pernapasan',
-                'Hasil_Pemeriksaan' => 'Batuk, demam, sesak',
-                'Resep_Obat' => 'Ambroxol, antibiotik',
-                'Tindak_Lanjut' => 'Kontrol ulang 5 hari',
-            ],
-        ];
+        return $this->belongsTo(Pasien::class, 'id_pasien');
     }
 
-    public static function find($id)
+    public function dokter()
     {
-        return collect(self::all())->firstWhere('ID_Catatan', $id);
+        return $this->belongsTo(Dokter::class, 'id_dokter');
     }
 }

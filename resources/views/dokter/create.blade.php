@@ -9,7 +9,7 @@
         @csrf
         <label>Nama: <input type="text" name="nama" required></label><br>
         <label>Spesialisasi: <input type="text" name="spesialisasi" required></label><br>
-        <label>Nomor Telepon: <input type="text" name="nomor_telepon" required></label><br>
+        <label>No Telepon: <input type="text" name="no_telepon" required></label><br>
         <label>Email: <input type="email" name="email" required></label><br>
         <button type="submit" style="margin-top: 10px;">Tambah</button>
     </form>

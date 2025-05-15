@@ -12,14 +12,21 @@ Route::get('/', function () {
 });
 
 // Akun Pengguna
-Route::resource('akun_pengguna', AkunPenggunaController::class);
-Route::get('/akun_pengguna/{id}/delete', [AkunPenggunaController::class, 'delete'])->name('akun_pengguna.delete');
+Route::resource('akunpengguna', AkunPenggunaController::class);
+Route::get('/akunpengguna/{id}/delete', [AkunPenggunaController::class, 'delete'])->name('akunpengguna.delete');
 
 // Dokter
 Route::resource('dokter', DokterController::class);
 Route::get('/dokter/{id}/delete', [DokterController::class, 'delete'])->name('dokter.delete');
 
-// Lainnya
-Route::resource('staf_administrasi', StafAdministrasiController::class);
-Route::resource('catatan_medis', CatatanMedisController::class);
+// Pasien
 Route::resource('pasien', PasienController::class);
+Route::get('/pasien/{id}/delete', [PasienController::class, 'delete'])->name('pasien.delete');
+
+// Staf Administrasi
+Route::resource('stafadministrasi', StafAdministrasiController::class);
+Route::get('/stafadministrasi/{id}/delete', [StafAdministrasiController::class, 'delete'])->name('stafadministrasi.delete');
+
+// Catatan Medis
+Route::resource('catatanmedis', CatatanMedisController::class);
+Route::get('/catatanmedis/{id}/delete', [CatatanMedisController::class, 'delete'])->name('catatanmedis.delete');

@@ -4,25 +4,28 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePasienTable extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
-        Schema::create('pasien', function (Blueprint $table) {
-            $table->integer('id_pasien', 50);
-            $table->integer('id_akun', 50);
-            $table->string('nama', 50);
-            $table->date('tanggal_lahir', 50);
-            $table->string('jenis_kelamin', 50);
-            $table->string('alamat', 50);
-            $table->string('nomor_telepon',100);
-            $table->string('email')->unique();
-            $table->text('riwayat_medis',50);
+        Schema::create('pasiens', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('id_akunpengguna');
+            $table->string('nama');
+            $table->date('tanggal_lahir');
+            $table->string('jenis_kelamin');
+            $table->string('alamat');
+            $table->string('no_telepon');
+            $table->string('email');
+            $table->string('riwayat_medis');
+            $table->timestamps();
+
+            $table->foreign('id_akunpengguna')->references('id')->on('akunpenggunas')->onDelete('cascade');
         });
     }
 
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('pasien');
+        Schema::dropIfExists('pasiens');
     }
-}
+};

@@ -5,15 +5,15 @@
 @section('content')
 <h2>Detail Akun Pengguna</h2>
 
-    <p><strong>Username:</strong> {{ $akun_pengguna->username }}</p>
-    <p><strong>Password:</strong> {{ $akun_pengguna->password }}</p>
-    <p><strong>Peran:</strong> {{ $akun_pengguna->peran }}</p>
+    <p><strong>Username:</strong> {{ $akunpengguna->username }}</p>
+    <p><strong>Password:</strong> {{ $akunpengguna->password }}</p>
+    <p><strong>Peran:</strong> {{ $akunpengguna->peran }}</p>
 
     <br>
 
-    <a href="{{ route('akun_pengguna.edit', $akun_pengguna->id) }}">✏ Edit</a> |
-    <a href="{{ route('akun_pengguna.delete', $akun_pengguna->id) }}">🗑 Hapus</a>
+    <a href="{{ route('akunpengguna.edit', $akunpengguna->id) }}">✏ Edit</a> |
+    <a href="{{ route('akunpengguna.delete', $akunpengguna->id) }}">🗑 Hapus</a>
 
-    <a href="{{ route('akun_pengguna.index') }}">Kembali</a>
+    <a href="{{ route('akunpengguna.index') }}">Kembali</a>
 
 @endsection

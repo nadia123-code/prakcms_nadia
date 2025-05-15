@@ -5,14 +5,14 @@
 <p>Apakah kamu yakin ingin menghapus akun ini?</p>
 
 <ul>
-    <li><strong>Username:</strong> {{ $akun_pengguna->username }}</li>
-    <li><strong>Peran:</strong> {{ $akun_pengguna->peran }}</li>
+    <li><strong>Username:</strong> {{ $akunpengguna->username }}</li>
+    <li><strong>Peran:</strong> {{ $akunpengguna->peran }}</li>
 </ul>
 
-<form method="POST" action="{{ route('akun_pengguna.destroy', $akun_pengguna->id) }}">
+<form method="POST" action="{{ route('akunpengguna.destroy', $akunpengguna->id) }}">
     @csrf
     @method('DELETE')
     <button type="submit">Ya, Hapus</button>
-    <a href="{{ route('akun_pengguna.index') }}">Batal</a>
+    <a href="{{ route('akunpengguna.index') }}">Batal</a>
 </form>
 @endsection
