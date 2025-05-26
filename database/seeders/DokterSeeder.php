@@ -16,20 +16,8 @@ class DokterSeeder extends Seeder
             [
                 'Nama' => 'Dr. Andi Wijaya',
                 'Spesialisasi' => 'Umum',
-                'Nomor_Telepon' => '081234567890',
+                'no_telepon' => '081234567890',
                 'Email' => 'andi.wijaya@example.com',
-            ],
-            [
-                'Nama' => 'Dr. Siti Lestari',
-                'Spesialisasi' => 'Anak',
-                'Nomor_Telepon' => '082345678901',
-                'Email' => 'siti.lestari@example.com',
-            ],
-            [
-                'Nama' => 'Dr. Bambang Sutrisno',
-                'Spesialisasi' => 'Bedah',
-                'Nomor_Telepon' => '083456789012',
-                'Email' => 'bambang.sutrisno@example.com',
             ],
         ]);
     }

@@ -13,16 +13,21 @@ class AkunPenggunaSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('akun_pengguna')->insert([
+        DB::table('akunpenggunas')->insert([
             [
-                'username' => 'admin01',
-                'password' => Hash::make('admin123'),  // Menggunakan Hash::make untuk membuat password terenkripsi
-                'peran' => 'admin',
+                'username' => 'nadia',
+                'password' => 'staf123', 
+                'peran' => 'staf',
             ],
             [
-                'username' => 'pasien01',
-                'password' => Hash::make('pasien123'),  // Menggunakan Hash::make untuk membuat password terenkripsi
+                'username' => 'wawa',
+                'password' => 'pasien123', 
                 'peran' => 'pasien',
+            ],
+            [
+                'username' => 'Dr. Andi Wijaya',
+                'password' => 'dokter123', 
+                'peran' => 'dokter',
             ],
         ]);
     }

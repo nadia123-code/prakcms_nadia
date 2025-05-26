@@ -44,7 +44,7 @@ class CatatanMedisController extends Controller
             'tindak_lanjut' => $request->tindak_lanjut,
         ]);
 
-        return redirect()->route('catatanmedis.index');
+        return redirect()->route('catatanmedis.index')->with('success','Data catatan medis berhasil ditambahkan');
     }
 
     // Menampilkan detail catatan medis
@@ -85,7 +85,7 @@ class CatatanMedisController extends Controller
             'tindak_lanjut' => $request->tindak_lanjut,
         ]);
 
-        return redirect()->route('catatanmedis.show', $id);
+        return redirect()->route('catatanmedis.show', $id)->with('success','Data catatan medis berhasil diperbarui');
     }
 
     // Halaman konfirmasi hapus
@@ -101,6 +101,6 @@ class CatatanMedisController extends Controller
         $catatan = CatatanMedis::findOrFail($id);
         $catatan->delete();
 
-        return redirect()->route('catatanmedis.index');
+        return redirect()->route('catatanmedis.index')->with('success','Data catatan medis berhasil dihapus');
     }
 }

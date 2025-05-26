@@ -33,7 +33,7 @@ class AkunPenggunaController extends Controller
             'peran' => $request->input('peran'),
         ]);
 
-        return redirect()->route('akunpengguna.index');
+        return redirect()->route('akunpengguna.index')->with('success','Data akun pengguna berhasil ditambahkan');
     }
 
     public function show($id)
@@ -51,7 +51,7 @@ class AkunPenggunaController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'username' => 'required|string|max:50|unique:akunpenggunas,username,',
+            'username' => 'required|string|max:50|unique:akunpenggunas,username,' . $id,
             'password' => 'required|string|max:50',
             'peran' => 'required|string|max:225',
         ]);
@@ -66,7 +66,7 @@ class AkunPenggunaController extends Controller
 
         $akunpengguna->update($data);
 
-        return redirect()->route('akunpengguna.show', $id);
+        return redirect()->route('akunpengguna.show', $id)->with('success','Data akun pengguna berhasil diperbarui');
     }
 
     public function delete($id)
@@ -80,6 +80,6 @@ class AkunPenggunaController extends Controller
         $akunpengguna = AkunPengguna::findOrFail($id);
         $akunpengguna->delete();
 
-        return redirect()->route('akunpengguna.index');
+        return redirect()->route('akunpengguna.index')->with('success','Data akun pengguna berhasil dihapus');
     }
 }

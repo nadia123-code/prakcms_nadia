@@ -37,7 +37,7 @@ class StafAdministrasiController extends Controller
             'email' => $request->email,
         ]);
 
-        return redirect()->route('stafadministrasi.index');
+        return redirect()->route('stafadministrasi.index')->with('success','Data staf berhasil ditambahkan');
     }
 
 
@@ -73,7 +73,7 @@ class StafAdministrasiController extends Controller
             'email' => $request->email,
         ]);
 
-        return redirect()->route('stafadministrasi.show', $id);
+        return redirect()->route('stafadministrasi.show', $id)->with('success','Data staf berhasil diperbarui');
     }
 
     public function delete($id)
@@ -87,6 +87,6 @@ class StafAdministrasiController extends Controller
         $staf_administrasi = StafAdministrasi::findOrFail($id);
         $staf_administrasi->delete();
 
-        return redirect()->route('stafadministrasi.index');
+        return redirect()->route('stafadministrasi.index')->with('success','Data staf berhasil dihapus');
     }
 }

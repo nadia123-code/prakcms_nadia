@@ -35,7 +35,7 @@ class DokterController extends Controller
             'email' => $request->input('email'),
         ]);
 
-        return redirect()->route('dokter.index');
+        return redirect()->route('dokter.index')->with('success','Data dokter berhasil ditambahkan');
     }
 
     public function show($id)
@@ -68,7 +68,7 @@ class DokterController extends Controller
             'email' => $request->input('email'),
         ]);
 
-        return redirect()->route('dokter.show', $id);
+        return redirect()->route('dokter.show', $id)->with('success','Data dokter berhasil diperbarui');
     }
 
     public function delete($id)
@@ -82,6 +82,6 @@ class DokterController extends Controller
         $dokter = Dokter::findOrFail($id);
         $dokter->delete();
 
-        return redirect()->route('dokter.index');
+        return redirect()->route('dokter.index')->with('success','Data dokter berhasil dihapus');
     }
 }

@@ -46,7 +46,7 @@ class PasienController extends Controller
             'riwayat_medis' => $request->input('riwayat_medis'),
         ]);
 
-        return redirect()->route('pasien.index');
+        return redirect()->route('pasien.index')->with('success','Data pasien berhasil ditambahkan');
     }
 
     // Menampilkan detail pasien
@@ -90,7 +90,7 @@ class PasienController extends Controller
             'riwayat_medis' => $request->input('riwayat_medis'),
         ]);
 
-        return redirect()->route('pasien.show', $id);
+        return redirect()->route('pasien.show', $id)->with('success','Data pasien berhasil diperbarui');
     }
 
     // Menampilkan halaman konfirmasi hapus
@@ -106,6 +106,6 @@ class PasienController extends Controller
         $pasien = Pasien::findOrFail($id);
         $pasien->delete();
 
-        return redirect()->route('pasien.index');
+        return redirect()->route('pasien.index')->with('success','Data pasien berhasil dihapus');
     }
 }
