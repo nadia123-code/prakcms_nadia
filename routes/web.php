@@ -30,3 +30,7 @@ Route::get('/stafadministrasi/{id}/delete', [StafAdministrasiController::class, 
 // Catatan Medis
 Route::resource('catatanmedis', CatatanMedisController::class);
 Route::get('/catatanmedis/{id}/delete', [CatatanMedisController::class, 'delete'])->name('catatanmedis.delete');
+
+Route::get('/pendaftaran-akun-pasien', function () {
+    return 'Selamat datang di halaman Pendaftaran Akun Pasien Klinik!';
+})->middleware('check.patient.age');
