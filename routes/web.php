@@ -6,6 +6,7 @@ use App\Http\Controllers\AkunPenggunaController;
 use App\Http\Controllers\CatatanMedisController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\PasienController;
+use App\Http\Controllers\ImageController; 
 
 Route::get('/', function () {
     return view('home');
@@ -34,3 +35,7 @@ Route::get('/catatanmedis/{id}/delete', [CatatanMedisController::class, 'delete'
 Route::get('/pendaftaran-akun-pasien', function () {
     return 'Selamat datang di halaman Pendaftaran Akun Pasien Klinik!';
 })->middleware('check.patient.age');
+
+Route::get('/upload', [ImageController::class, 'create'])->name('image.create');
+Route::post('/upload', [ImageController::class, 'store'])->name('image.store');
+Route::delete('/upload/{id}', [ImageController::class, 'destroy'])->name('image.destroy');
