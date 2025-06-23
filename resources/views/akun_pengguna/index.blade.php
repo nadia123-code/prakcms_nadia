@@ -4,6 +4,12 @@
 
 @section('content')
     <h2 style="margin-bottom: 16px;">Daftar Akun Pengguna</h2>
+    
+    @if(session('error'))
+        <div style="background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; margin-bottom: 15px; text-align: center;">
+                {{ session('error') }}
+        </div>
+    @endif
 
     <ul>
         @forelse($akunpenggunas as $p)

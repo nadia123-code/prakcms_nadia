@@ -22,7 +22,7 @@ class AkunPenggunaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'username' => 'required|string|max:50|unique:akunpenggunas,username,',
+            'username' => 'required|string|max:50|unique:akunpenggunas,username',
             'password' => 'required|string|max:50',
             'peran' => 'required|string|max:225',
         ]);
@@ -33,19 +33,27 @@ class AkunPenggunaController extends Controller
             'peran' => $request->input('peran'),
         ]);
 
-        return redirect()->route('akunpengguna.index')->with('success','Data akun pengguna berhasil ditambahkan');
+        return redirect()->route('akunpengguna.index')->with('success', 'Data akun pengguna berhasil ditambahkan');
     }
 
     public function show($id)
     {
-        $akunpengguna = AkunPengguna::findOrFail($id);
-        return view('akun_pengguna.show', compact('akunpengguna'));
+        try {
+            $akunpengguna = AkunPengguna::findOrFail($id);
+            return view('akun_pengguna.show', compact('akunpengguna'));
+        } catch (\Throwable $th) {
+            return redirect()->route('akunpengguna.index')->with('error', 'Data Akun Pengguna tidak ditemukan');
+        }
     }
 
     public function edit($id)
     {
-        $akunpengguna = AkunPengguna::findOrFail($id);
-        return view('akun_pengguna.edit', compact('akunpengguna'));
+        try {
+            $akunpengguna = AkunPengguna::findOrFail($id);
+            return view('akun_pengguna.edit', compact('akunpengguna'));
+        } catch (\Throwable $th) {
+            return redirect()->route('akunpengguna.index')->with('error', 'Data Akun Pengguna tidak ditemukan');
+        }
     }
 
     public function update(Request $request, $id)
@@ -56,30 +64,42 @@ class AkunPenggunaController extends Controller
             'peran' => 'required|string|max:225',
         ]);
 
-        $akunpengguna = AkunPengguna::findOrFail($id);
+        try {
+            $akunpengguna = AkunPengguna::findOrFail($id);
 
-        $data = [
-            'username' => $request->input('username'),
-            'password' => $request->input('password'),
-            'peran' => $request->input('peran'),
-        ];
+            $data = [
+                'username' => $request->input('username'),
+                'password' => $request->input('password'),
+                'peran' => $request->input('peran'),
+            ];
 
-        $akunpengguna->update($data);
+            $akunpengguna->update($data);
 
-        return redirect()->route('akunpengguna.show', $id)->with('success','Data akun pengguna berhasil diperbarui');
+            return redirect()->route('akunpengguna.show', $id)->with('success', 'Data akun pengguna berhasil diperbarui');
+        } catch (\Throwable $th) {
+            return redirect()->route('akunpengguna.index')->with('error', 'Gagal memperbarui. Data Akun Pengguna tidak ditemukan');
+        }
     }
 
     public function delete($id)
     {
-        $akunpengguna = AkunPengguna::findOrFail($id);
-        return view('akun_pengguna.delete', compact('akunpengguna'));
+        try {
+            $akunpengguna = AkunPengguna::findOrFail($id);
+            return view('akun_pengguna.delete', compact('akunpengguna'));
+        } catch (\Throwable $th) {
+            return redirect()->route('akunpengguna.index')->with('error', 'Data Akun Pengguna tidak ditemukan');
+        }
     }
 
     public function destroy($id)
     {
-        $akunpengguna = AkunPengguna::findOrFail($id);
-        $akunpengguna->delete();
+        try {
+            $akunpengguna = AkunPengguna::findOrFail($id);
+            $akunpengguna->delete();
 
-        return redirect()->route('akunpengguna.index')->with('success','Data akun pengguna berhasil dihapus');
+            return redirect()->route('akunpengguna.index')->with('success', 'Data akun pengguna berhasil dihapus');
+        } catch (\Throwable $th) {
+            return redirect()->route('akunpengguna.index')->with('error', 'Gagal menghapus. Data Akun Pengguna tidak ditemukan');
+        }
     }
 }

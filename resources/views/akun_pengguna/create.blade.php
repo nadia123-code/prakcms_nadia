@@ -5,6 +5,13 @@
 @section('content')
     <h2 style="margin-bottom: 16px;">Tambah Akun Pengguna Baru</h2>
 
+    @if(session('success'))
+        <div style="color: green; font-weight: bold;">{{ session('success') }}</div>
+    @endif
+    @if(session('error'))
+        <div style="color: red; font-weight: bold;">{{ session('error') }}</div>
+    @endif
+
     <form method="POST" action="{{ route('akunpengguna.store') }}">
     @csrf
         <label>Username: <input type="text" name="username" required></label><br>
