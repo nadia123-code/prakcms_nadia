@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             StafAdministrasiSeeder::class,
             PasienSeeder::class,
             CatatanMedisSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }

@@ -7,10 +7,17 @@ use App\Http\Controllers\CatatanMedisController;
 use App\Http\Controllers\DokterController;
 use App\Http\Controllers\PasienController;
 use App\Http\Controllers\ImageController; 
+use App\Http\Controllers\LoginController;
 
-Route::get('/', function () {
-    return view('home');
-});
+// Halaman Login
+Route::get('/', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login.submit');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// Halaman setelah login
+Route::get('/home', function () {
+    return view('home'); 
+})->middleware('auth')->name('home');
 
 // Akun Pengguna
 Route::resource('akunpengguna', AkunPenggunaController::class);
