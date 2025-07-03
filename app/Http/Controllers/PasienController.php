@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pasien;
+use Illuminate\Support\Facades\Log;
 
 class PasienController extends Controller
 {
@@ -35,32 +36,49 @@ class PasienController extends Controller
             'riwayat_medis' => 'nullable|string',
         ]);
 
-        Pasien::create([
-            'id_akunpengguna' => $request->input('id_akunpengguna'),
-            'nama' => $request->input('nama'),
-            'tanggal_lahir' => $request->input('tanggal_lahir'),
-            'jenis_kelamin' => $request->input('jenis_kelamin'),
-            'alamat' => $request->input('alamat'),
-            'no_telepon' => $request->input('no_telepon'),
-            'email' => $request->input('email'),
-            'riwayat_medis' => $request->input('riwayat_medis'),
-        ]);
-
-        return redirect()->route('pasien.index')->with('success','Data pasien berhasil ditambahkan');
+        try {
+            Pasien::create([
+                'id_akunpengguna' => $request->input('id_akunpengguna'),
+                'nama' => $request->input('nama'),
+                'tanggal_lahir' => $request->input('tanggal_lahir'),
+                'jenis_kelamin' => $request->input('jenis_kelamin'),
+                'alamat' => $request->input('alamat'),
+                'no_telepon' => $request->input('no_telepon'),
+                'email' => $request->input('email'),
+                'riwayat_medis' => $request->input('riwayat_medis'),
+            ]);
+            Log::info("Berhasil menambahkan pasien: " . $request->input('nama'));
+            return redirect()->route('pasien.index')->with('success','Data pasien berhasil ditambahkan');
+        } catch (\Throwable $th) {
+            Log::error("Gagal menambahkan pasien. Error: " . $th->getMessage());
+            return redirect()->route('pasien.index')->with('error','Terjadi kesalahan saat menyimpan data pasien');
+        }
     }
 
     // Menampilkan detail pasien
     public function show($id)
     {
-        $pasien = Pasien::findOrFail($id);
-        return view('pasien.show', compact('pasien'));
+        try {
+            $pasien = Pasien::findOrFail($id);
+            Log::info("Menampilkan detail pasien ID: $id");
+            return view('pasien.show', compact('pasien'));
+        } catch (\Throwable $th) {
+            Log::error("Gagal menampilkan detail pasien ID: $id. Error: " . $th->getMessage());
+            return redirect()->route('pasien.index')->with('error','Data pasien tidak ditemukan');
+        }
     }
 
     // Menampilkan form edit pasien
     public function edit($id)
     {
-        $pasien = Pasien::findOrFail($id);
-        return view('pasien.edit', compact('pasien'));
+        try {
+            $pasien = Pasien::findOrFail($id);
+            Log::info("Mengakses form edit pasien ID: $id");
+            return view('pasien.edit', compact('pasien'));
+        } catch (\Throwable $th) {
+            Log::error("Gagal mengakses form edit pasien ID: $id. Error: " . $th->getMessage());
+            return redirect()->route('pasien.index')->with('error','Data pasien tidak ditemukan');
+        }
     }
 
     // Memproses update data pasien
@@ -77,35 +95,52 @@ class PasienController extends Controller
             'riwayat_medis' => 'nullable|string',
         ]);
 
-        $pasien = Pasien::findOrFail($id);
+        try {
+            $pasien = Pasien::findOrFail($id);
 
-        $pasien->update([
-            'id_akunpengguna' => $request->input('id_akunpengguna'),
-            'nama' => $request->input('nama'),
-            'tanggal_lahir' => $request->input('tanggal_lahir'),
-            'jenis_kelamin' => $request->input('jenis_kelamin'),
-            'alamat' => $request->input('alamat'),
-            'no_telepon' => $request->input('no_telepon'),
-            'email' => $request->input('email'),
-            'riwayat_medis' => $request->input('riwayat_medis'),
-        ]);
+            $pasien->update([
+                'id_akunpengguna' => $request->input('id_akunpengguna'),
+                'nama' => $request->input('nama'),
+                'tanggal_lahir' => $request->input('tanggal_lahir'),
+                'jenis_kelamin' => $request->input('jenis_kelamin'),
+                'alamat' => $request->input('alamat'),
+                'no_telepon' => $request->input('no_telepon'),
+                'email' => $request->input('email'),
+                'riwayat_medis' => $request->input('riwayat_medis'),
+            ]);
 
-        return redirect()->route('pasien.show', $id)->with('success','Data pasien berhasil diperbarui');
+            Log::info("Berhasil memperbarui data pasien ID: $id");
+            return redirect()->route('pasien.show', $id)->with('success','Data pasien berhasil diperbarui');
+        } catch (\Throwable $th) {
+            Log::error("Gagal memperbarui data pasien ID: $id. Error: " . $th->getMessage());
+            return redirect()->route('pasien.index')->with('error','Terjadi kesalahan saat memperbarui data pasien');
+        }
     }
 
     // Menampilkan halaman konfirmasi hapus
     public function delete($id)
     {
-        $pasien = Pasien::findOrFail($id);
-        return view('pasien.delete', compact('pasien'));
+        try {
+            $pasien = Pasien::findOrFail($id);
+            Log::info("Mengakses halaman konfirmasi hapus pasien ID: $id");
+            return view('pasien.delete', compact('pasien'));
+        } catch (\Throwable $th) {
+            Log::error("Gagal mengakses halaman hapus pasien ID: $id. Error: " . $th->getMessage());
+            return redirect()->route('pasien.index')->with('error','Data pasien tidak ditemukan');
+        }
     }
 
     // Menghapus data pasien
     public function destroy($id)
     {
-        $pasien = Pasien::findOrFail($id);
-        $pasien->delete();
-
-        return redirect()->route('pasien.index')->with('success','Data pasien berhasil dihapus');
+        try {
+            $pasien = Pasien::findOrFail($id);
+            $pasien->delete();
+            Log::info("Berhasil menghapus data pasien ID: $id");
+            return redirect()->route('pasien.index')->with('success','Data pasien berhasil dihapus');
+        } catch (\Throwable $th) {
+            Log::error("Gagal menghapus data pasien ID: $id. Error: " . $th->getMessage());
+            return redirect()->route('pasien.index')->with('error','Terjadi kesalahan saat menghapus data pasien');
+        }
     }
 }
