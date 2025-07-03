@@ -3,21 +3,37 @@
 @section('title', 'Tambah Akun Pengguna')
 
 @section('content')
-    <h2 style="margin-bottom: 16px;">Tambah Akun Pengguna Baru</h2>
-
-    @if(session('success'))
-        <div style="color: green; font-weight: bold;">{{ session('success') }}</div>
-    @endif
-    @if(session('error'))
-        <div style="color: red; font-weight: bold;">{{ session('error') }}</div>
-    @endif
-
-    <form method="POST" action="{{ route('akunpengguna.store') }}">
-    @csrf
-        <label>Username: <input type="text" name="username" required></label><br>
-        <label>Password: <input type="text" name="password" required></label><br>
-        <label>Peran: <input type="text" name="peran" required></label><br>
-        <button type="submit" style="margin-top: 10px;">Tambah</button>
-    </form>
-    <a href="{{ route('akunpengguna.index') }}" style="display: inline-block; margin-top: 20px;">← Kembali ke daftar</a>
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="mb-4">Tambah Akun Pengguna</h2>
+                    @if(session('success'))
+                        <div class="alert alert-success text-center">{{ session('success') }}</div>
+                    @endif
+                    @if(session('error'))
+                        <div class="alert alert-danger text-center">{{ session('error') }}</div>
+                    @endif
+                    <form method="POST" action="{{ route('akunpengguna.store') }}">
+                        @csrf
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            <input type="text" name="username" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="text" name="password" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Peran</label>
+                            <input type="text" name="peran" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Tambah Akun</button>
+                        <a href="{{ route('akunpengguna.index') }}" class="btn btn-secondary ms-2">Kembali</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 @endsection

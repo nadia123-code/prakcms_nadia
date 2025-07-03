@@ -1,23 +1,40 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2>Edit Dokter</h2>
-    <form method="POST" action="{{ route('dokter.update', $dokter->id) }}">
-        @csrf
-        @method('PUT')
 
-        <label>Nama:</label><br>
-        <input type="text" name="nama" value="{{ $dokter->nama }}"><br><br>
 
-        <label>Spesialisasi:</label><br>
-        <input type="text" name="spesialisasi" value="{{ $dokter->spesialisasi }}"><br><br>
 
-        <label>No Telepon:</label><br>
-        <input type="text" name="no_telepon" value="{{ $dokter->no_telepon }}"><br><br>
 
-        <label>Email:</label><br>
-        <input type="email" name="email" value="{{ $dokter->email }}"><br><br>
 
-        <button type="submit">Update</button>
-    </form>
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="mb-4">Edit Dokter</h2>
+                    <form method="POST" action="{{ route('dokter.update', $dokter->id) }}">
+                        @csrf
+                        @method('PUT')
+                        <div class="mb-3">
+                            <label class="form-label">Nama</label>
+                            <input type="text" name="nama" class="form-control" value="{{ $dokter->nama }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Spesialisasi</label>
+                            <input type="text" name="spesialisasi" class="form-control" value="{{ $dokter->spesialisasi }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">No Telepon</label>
+                            <input type="text" name="no_telepon" class="form-control" value="{{ $dokter->no_telepon }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" name="email" class="form-control" value="{{ $dokter->email }}" required>
+                        </div>
+                        <button type="submit" class="btn btn-success"><i class="bi bi-save"></i> Update</button>
+                        <a href="{{ route('dokter.index') }}" class="btn btn-secondary ms-2">Batal</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

@@ -1,38 +1,54 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2>Edit Pasien</h2>
-    <form method="POST" action="{{ route('pasien.update', $pasien->id) }}">
-        @csrf
-        @method('PUT')
-
-        <label>ID Akun Pengguna: 
-        <input type="number" name="id_akunpengguna" value="{{ $pasien->id_akunpengguna }}" required></label><br><br>
-
-        <label>Nama:</label><br>
-        <input type="text" name="nama" value="{{ $pasien->nama }}" required><br><br>
-
-        <label>Tanggal Lahir:</label><br>
-        <input type="date" name="tanggal_lahir" value="{{ $pasien->tanggal_lahir }}" required><br><br>
-
-        <label>Jenis Kelamin:</label><br>
-        <select name="jenis_kelamin" required>
-            <option value="Laki-laki" {{ $pasien->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
-            <option value="Perempuan" {{ $pasien->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
-        </select><br><br>
-
-        <label>Alamat:</label><br>
-        <textarea name="alamat" required>{{ $pasien->alamat }}</textarea><br><br>
-
-        <label>Nomor Telepon:</label><br>
-        <input type="text" name="no_telepon" value="{{ $pasien->no_telepon }}" required><br><br>
-
-        <label>Email:</label><br>
-        <input type="email" name="email" value="{{ $pasien->email }}" required><br><br>
-
-        <label>Riwayat Medis:</label><br>
-        <textarea name="riwayat_medis">{{ $pasien->riwayat_medis }}</textarea><br><br>
-
-        <button type="submit">Update</button>
-    </form>
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="mb-4">Edit Pasien</h2>
+                    <form method="POST" action="{{ route('pasien.update', $pasien->id) }}">
+                        @csrf
+                        @method('PUT')
+                        <div class="mb-3">
+                            <label class="form-label">ID Akun Pengguna</label>
+                            <input type="number" name="id_akunpengguna" class="form-control" value="{{ $pasien->id_akunpengguna }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Nama</label>
+                            <input type="text" name="nama" class="form-control" value="{{ $pasien->nama }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Tanggal Lahir</label>
+                            <input type="date" name="tanggal_lahir" class="form-control" value="{{ $pasien->tanggal_lahir }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Jenis Kelamin</label>
+                            <select name="jenis_kelamin" class="form-select" required>
+                                <option value="Laki-laki" {{ $pasien->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                                <option value="Perempuan" {{ $pasien->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Alamat</label>
+                            <textarea name="alamat" class="form-control" required>{{ $pasien->alamat }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Nomor Telepon</label>
+                            <input type="text" name="no_telepon" class="form-control" value="{{ $pasien->no_telepon }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" name="email" class="form-control" value="{{ $pasien->email }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Riwayat Medis</label>
+                            <textarea name="riwayat_medis" class="form-control">{{ $pasien->riwayat_medis }}</textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <a href="{{ route('pasien.index') }}" class="btn btn-secondary ms-2">Kembali</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

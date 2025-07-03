@@ -3,16 +3,36 @@
 @section('title', 'Tambah Dokter')
 
 @section('content')
-    <h2 style="margin-bottom: 16px;">Tambah Dokter Baru</h2>
 
-    <form method="POST" action="{{ route('dokter.store') }}" style="line-height: 2;">
-        @csrf
-        <label>Nama: <input type="text" name="nama" required></label><br>
-        <label>Spesialisasi: <input type="text" name="spesialisasi" required></label><br>
-        <label>No Telepon: <input type="text" name="no_telepon" required></label><br>
-        <label>Email: <input type="email" name="email" required></label><br>
-        <button type="submit" style="margin-top: 10px;">Tambah</button>
-    </form>
 
-    <a href="{{ route('dokter.index') }}" style="display: inline-block; margin-top: 20px;">← Kembali ke daftar</a>
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="mb-4">Tambah Dokter Baru</h2>
+                    <form method="POST" action="{{ route('dokter.store') }}">
+                        @csrf
+                        <div class="mb-3">
+                            <label class="form-label">Nama</label>
+                            <input type="text" name="nama" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Spesialisasi</label>
+                            <input type="text" name="spesialisasi" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">No Telepon</label>
+                            <input type="text" name="no_telepon" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" name="email" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Tambah</button>
+                        <a href="{{ route('dokter.index') }}" class="btn btn-secondary ms-2">Kembali</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
