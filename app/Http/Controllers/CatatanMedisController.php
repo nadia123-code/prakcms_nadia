@@ -120,7 +120,7 @@ class CatatanMedisController extends Controller
             return view('catatanmedis.delete', compact('catatan'));
         } catch (\Throwable $th) {
             Log::error("Gagal mengakses halaman delete catatan medis ID: $id. Error: " . $th->getMessage());
-            return redirect()->route('catatanmedis.index')->with('error','Data catatan medis tidak ditemukan');
+            return redirect()->route('catatanmedis.index')->with('error','Data catatan medis tidak ditemukan.');
         }
     }
 
